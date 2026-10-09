@@ -32,9 +32,7 @@
 
     <!-- Sveltia CMS (drop-in, Decap/Netlify CMS compatible).
          Loads its configuration from /admin/config.yml -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
-
-    <script>
+<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
       /* Hide the loader once the CMS mounts */
       window.addEventListener('load', function () {
         var el = document.getElementById('lan-loading');
