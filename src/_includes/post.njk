@@ -1,1 +1,45 @@
+{% from "icons.njk" import icon %}
+<footer class="site-footer">
+  <div class="container footer-grid">
 
+    <div class="footer-brand">
+      <h2 class="footer-logo">{{ site.name }}</h2>
+      <p class="footer-desc">{{ site.description }}</p>
+      <p class="footer-tagline">{{ site.tagline }}</p>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Explore</h3>
+      <ul class="footer-links">
+        {% for item in site.nav %}
+          <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {% endfor %}
+        <li><a href="/posts/">All Posts</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Follow Us</h3>
+      <ul class="footer-social">
+        {% for s in site.social %}
+          <li>
+            <a href="{{ s.url }}" target="_blank" rel="noopener noreferrer">
+              {{ icon(s.icon, 18) }}
+              <span>{{ s.short or s.label }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom__inner">
+      <p>{{ site.copyright }}</p>
+      <p class="footer-bottom__meta">
+        Built for the Free Fire esports community across Africa.
+      </p>
+    </div>
+  </div>
+</footer>
