@@ -1,5 +1,82 @@
-{
-  "layout": "post.njk",
-  "tags": ["posts"],
-  "permalink": "/posts/{{ page.fileSlug }}/index.html"
-}
+---
+layout: base.njk
+title: All Posts
+description: "Every article, roster update, tournament report, ranking, interview and insight from LEAD ACCESS Network — Free Fire esports across Africa."
+pagination:
+  data: collections.posts
+  size: 6
+  alias: posts
+permalink: "/posts/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+{% from "icons.njk" import icon %}
+
+<section class="page-head">
+  <div class="container">
+    <h1 class="page-title">All <span class="accent">Posts</span></h1>
+    <p class="page-sub">
+      Search and filter verified Free Fire esports coverage from across Africa.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <!-- ===================== TOOLBAR ===================== -->
+    <div class="toolbar">
+
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">{{ icon("search", 18) }}</span>
+        <label class="sr-only" for="post-search">Search posts</label>
+        <input
+          id="post-search"
+          class="search-input"
+          type="search"
+          placeholder="Search posts by title or summary…"
+          autocomplete="off"
+          spellcheck="false" />
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter posts by category">
+        <button class="filter-btn is-active" type="button" data-filter="All" aria-pressed="true">All</button>
+        {% for cat in site.categories %}
+          <button class="filter-btn" type="button" data-filter="{{ cat }}" aria-pressed="false">{{ cat }}</button>
+        {% endfor %}
+      </div>
+
+    </div>
+
+    <p class="result-count" id="post-count" aria-live="polite">{{ posts.length }} posts</p>
+
+    <!-- ===================== POST GRID ==================== -->
+    <div class="post-grid" id="post-grid">
+      {% for post in posts %}
+        {% include "post-card.njk" %}
+      {% endfor %}
+    </div>
+
+    <p class="empty-note" id="no-results" hidden>
+      No posts match your search. Try a different keyword or category.
+    </p>
+
+    <!-- ==================== PAGINATION ==================== -->
+    {% if pagination.pages.length > 1 %}
+      <nav class="pagination" id="post-pagination" aria-label="Pagination">
+        {% if pagination.href.previous %}
+          <a class="page-link page-link--nav" href="{{ pagination.href.previous }}" rel="prev">← Prev</a>
+        {% endif %}
+
+        {% for href in pagination.hrefs %}
+          <a class="page-link{% if href == page.url %} is-active{% endif %}"
+             href="{{ href }}"
+             {% if href == page.url %}aria-current="page"{% endif %}>{{ loop.index }}</a>
+        {% endfor %}
+
+        {% if pagination.href.next %}
+          <a class="page-link page-link--nav" href="{{ pagination.href.next }}" rel="next">Next →</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+
+  </div>
+</section>
