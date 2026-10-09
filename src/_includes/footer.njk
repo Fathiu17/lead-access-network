@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0A0A0A" />
 
+  <title>{% if title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }} — Free Fire Esports Across Africa{% endif %}</title>
+  <meta name="description" content="{{ description or site.description }}" />
+
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="{% if cover %}article{% else %}website{% endif %}" />
+  <meta property="og:site_name" content="{{ site.name }}" />
+  <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}" />
+  <meta property="og:description" content="{{ description or site.description }}" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:image" content="{{ site.url }}{% if cover %}{{ cover }}{% else %}/images/uploads/placeholder.svg{% endif %}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@leadaccessnet" />
+  <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}" />
+  <meta name="twitter:description" content="{{ description or site.description }}" />
+  <meta name="twitter:image" content="{{ site.url }}{% if cover %}{{ cover }}{% else %}/images/uploads/placeholder.svg{% endif %}" />
+
+  <link rel="icon" href="/images/uploads/placeholder.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/images/uploads/placeholder.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- RSS (optional, add feed.njk later) -->
+  <meta name="generator" content="Eleventy" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  {% include "header.njk" %}
+
+  <main id="main" tabindex="-1">
+    {{ content | safe }}
+  </main>
+
+  {% include "footer.njk" %}
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
