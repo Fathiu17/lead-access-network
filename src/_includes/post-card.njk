@@ -1,47 +1,24 @@
-{% from "icons.njk" import icon %}
-<header class="site-header">
-  <div class="header-wrap">
-
-    <a class="brand" href="/" aria-label="{{ site.name }} — home">
-      <span class="brand__logo">{{ site.name }}</span>
-      <span class="brand__tagline">{{ site.tagline }}</span>
-    </a>
-
-    <button
-      class="nav-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="primary-nav"
-      aria-label="Toggle navigation menu">
-      <span class="nav-toggle__bar"></span>
-      <span class="nav-toggle__bar"></span>
-      <span class="nav-toggle__bar"></span>
-    </button>
-
-    <nav class="site-nav" id="primary-nav" aria-label="Primary navigation">
-      <ul class="nav-list">
-        {% for item in site.nav %}
-          <li class="nav-list__item">
-            <a class="nav-link" href="{{ item.url }}">{{ item.label }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-
-      <ul class="social-list social-list--header">
-        {% for s in site.social %}
-          <li>
-            <a class="social-link"
-               href="{{ s.url }}"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="{{ s.label }}"
-               title="{{ s.label }}">
-              {{ icon(s.icon, 18) }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
-
-  </div>
-</header>
+<article class="post-card" data-category="{{ post.data.category }}">
+  <a class="post-card__link" href="{{ post.url }}">
+    <div class="post-card__media">
+      <img
+        class="post-card__img"
+        src="{{ post.data.cover or '/images/uploads/placeholder.svg' }}"
+        alt="{{ post.data.title }}"
+        loading="lazy" />
+      {% if post.data.category %}
+        <span class="badge">{{ post.data.category }}</span>
+      {% endif %}
+    </div>
+    <div class="post-card__body">
+      <p class="post-card__meta">
+        <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+      </p>
+      <h3 class="post-card__title">{{ post.data.title }}</h3>
+      {% if post.data.excerpt %}
+        <p class="post-card__excerpt">{{ post.data.excerpt }}</p>
+      {% endif %}
+      <span class="post-card__cta">Read Article</span>
+    </div>
+  </a>
+</article>

@@ -1,45 +1,56 @@
+---
+layout: base.njk
+---
 {% from "icons.njk" import icon %}
-<footer class="site-footer">
-  <div class="container footer-grid">
 
-    <div class="footer-brand">
-      <h2 class="footer-logo">{{ site.name }}</h2>
-      <p class="footer-desc">{{ site.description }}</p>
-      <p class="footer-tagline">{{ site.tagline }}</p>
-    </div>
-
-    <div class="footer-col">
-      <h3 class="footer-heading">Explore</h3>
-      <ul class="footer-links">
-        {% for item in site.nav %}
-          <li><a href="{{ item.url }}">{{ item.label }}</a></li>
-        {% endfor %}
-        <li><a href="/posts/">All Posts</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h3 class="footer-heading">Follow Us</h3>
-      <ul class="footer-social">
-        {% for s in site.social %}
-          <li>
-            <a href="{{ s.url }}" target="_blank" rel="noopener noreferrer">
-              {{ icon(s.icon, 18) }}
-              <span>{{ s.short or s.label }}</span>
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <div class="container footer-bottom__inner">
-      <p>{{ site.copyright }}</p>
-      <p class="footer-bottom__meta">
-        Built for the Free Fire esports community across Africa.
+<article class="post-article">
+  <header class="post-head">
+    <div class="container container--narrow">
+      {% if category %}
+        <a class="badge badge--inline" href="/posts/?category={{ category | urlencode }}">{{ category }}</a>
+      {% endif %}
+      <h1 class="post-title">{{ title }}</h1>
+      <p class="post-meta">
+        <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+        {% if author %}
+          <span class="post-meta__sep" aria-hidden="true">&bull;</span>
+          <span>By {{ author }}</span>
+        {% endif %}
       </p>
+      {% if cover %}
+        <div class="post-cover">
+          <img src="{{ cover }}" alt="{{ title }}" />
+        </div>
+      {% endif %}
     </div>
+  </header>
+
+  <div class="container container--narrow">
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+
+    <footer class="post-foot">
+      <a class="btn btn--ghost" href="/posts/">
+        ← Back to all posts
+      </a>
+      <div class="post-share">
+        <span class="post-share__label">Share</span>
+        <a class="social-link"
+           href="https://wa.me/?text={{ title | urlencode }}%20{{ site.url }}{{ page.url | urlencode }}"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Share on WhatsApp">
+          {{ icon("whatsapp", 16) }}
+        </a>
+        <a class="social-link"
+           href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url={{ site.url }}{{ page.url | urlencode }}"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Share on X">
+          {{ icon("x", 16) }}
+        </a>
+      </div>
+    </footer>
   </div>
-</footer>
+</article>

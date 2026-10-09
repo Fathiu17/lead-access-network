@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0A0A0A" />
 
   <title>{% if title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }} — Free Fire Esports Across Africa{% endif %}</title>
-  <meta name="description" content="{{ description or site.description }}" />
+  <meta name="description" content="{{ description or excerpt or site.description }}" />
 
   <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
 
@@ -14,13 +14,13 @@
   <meta property="og:type" content="{% if cover %}article{% else %}website{% endif %}" />
   <meta property="og:site_name" content="{{ site.name }}" />
   <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}" />
-  <meta property="og:description" content="{{ description or site.description }}" />
+  <meta property="og:description" content="{{ description or excerpt or site.description }}" />
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
   <meta property="og:image" content="{{ site.url }}{% if cover %}{{ cover }}{% else %}/images/uploads/placeholder.svg{% endif %}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@leadaccessnet" />
   <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}" />
-  <meta name="twitter:description" content="{{ description or site.description }}" />
+  <meta name="twitter:description" content="{{ description or excerpt or site.description }}" />
   <meta name="twitter:image" content="{{ site.url }}{% if cover %}{{ cover }}{% else %}/images/uploads/placeholder.svg{% endif %}" />
 
   <link rel="icon" href="/images/uploads/placeholder.svg" type="image/svg+xml" />
