@@ -1,1 +1,117 @@
+# ---------------------------------------------------------------------------
+# LEAD ACCESS Network — Content Manager configuration
+# Works with Sveltia CMS (https://github.com/sveltia/sveltia-cms)
+# and Decap CMS (https://decapcms.org). Admin panel: /admin
+# ---------------------------------------------------------------------------
 
+backend:
+  name: git-gateway          # Netlify Identity + Git Gateway
+  branch: main               # change to "master" if that is your default branch
+
+# Alternative (no Netlify Identity — requires GitHub OAuth):
+# backend:
+#   name: github
+#   repo: YOUR_GITHUB_USERNAME/lead-access-network
+#   branch: main
+
+# Editorial workflow = drafts → in review → published
+publish_mode: editorial_workflow
+
+# Where uploaded images are written, and the public URL they are served from
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
+
+site_url: https://YOUR-SITE-NAME.netlify.app
+display_url: https://YOUR-SITE-NAME.netlify.app
+logo_url: /images/uploads/placeholder.svg
+
+locale: en
+
+collections:
+  # -------------------------------------------------------------------------
+  # POSTS
+  # -------------------------------------------------------------------------
+  - name: "posts"
+    label: "Posts"
+    label_singular: "Post"
+    description: "Write and publish Free Fire esports coverage for LEAD ACCESS Network."
+    folder: "src/posts"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "posts/{{slug}}"
+    sortable_fields: ["date", "title", "category"]
+    summary: "{{title}} — {{category}} ({{date | date('DD MMM YYYY')}})"
+    editor:
+      preview: true
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "Keep it clear and specific — this is the headline readers see."
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm"
+        format: "YYYY-MM-DDTHH:mm:ss.SSSZ"
+        picker_utc: true
+        default: ""
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        default: "News"
+        options:
+          - "News"
+          - "Rosters"
+          - "Tournaments"
+          - "Rankings"
+          - "Interviews"
+          - "Insights"
+
+      - label: "Cover Image"
+        name: "cover"
+        widget: "image"
+        default: "/images/uploads/placeholder.svg"
+        choose_url: true
+        media_library:
+          config:
+            multiple: false
+
+      - label: "Excerpt"
+        name: "excerpt"
+        widget: "text"
+        hint: "One or two sentences shown on cards, listings and social previews."
+
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        required: false
+        default: "LAN Editorial"
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "Use headings, lists, quotes and images. Images upload to /images/uploads."
+
+  # -------------------------------------------------------------------------
+  # SITE SETTINGS (optional — edits src/_data/site.json)
+  # -------------------------------------------------------------------------
+  - name: "settings"
+    label: "Site Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "General"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Site Name", name: "name", widget: "string" }
+          - { label: "Short Name", name: "shortName", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Site URL", name: "url", widget: "string", required: false }
+          - { label: "Copyright", name: "copyright", widget: "string" }
