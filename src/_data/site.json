@@ -1,1 +1,51 @@
-
+{
+  "name": "LEAD ACCESS NETWORK",
+  "shortName": "LAN",
+  "tagline": "The trusted media and information network for Free Fire esports across Africa.",
+  "description": "Get verified news, roster updates, tournament announcements, rankings, results, interviews, and ecosystem insights from the Free Fire esports scene across Africa.",
+  "url": "https://YOUR-SITE-NAME.netlify.app",
+  "locale": "en",
+  "copyright": "© 2026 LEAD ACCESS Network. All rights reserved.",
+  "categories": [
+    "News",
+    "Rosters",
+    "Tournaments",
+    "Rankings",
+    "Interviews",
+    "Insights"
+  ],
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "News", "url": "/posts/?category=News" },
+    { "label": "Rosters", "url": "/posts/?category=Rosters" },
+    { "label": "Tournaments", "url": "/posts/?category=Tournaments" },
+    { "label": "Rankings", "url": "/posts/?category=Rankings" },
+    { "label": "Interviews", "url": "/posts/?category=Interviews" }
+  ],
+  "social": [
+    {
+      "label": "WhatsApp Channel",
+      "short": "WhatsApp",
+      "icon": "whatsapp",
+      "url": "https://whatsapp.com/channel/0029Vax5vSh7DAWvFgeu8Z0g"
+    },
+    {
+      "label": "X (Twitter)",
+      "short": "X",
+      "icon": "x",
+      "url": "https://x.com/leadaccessnet"
+    },
+    {
+      "label": "TikTok",
+      "short": "TikTok",
+      "icon": "tiktok",
+      "url": "https://www.tiktok.com/@leadaccessnetwork?_r=1&_t=ZP-97yufwHL1Zu"
+    },
+    {
+      "label": "Instagram",
+      "short": "Instagram",
+      "icon": "instagram",
+      "url": "https://www.instagram.com/leadaccessnetwork?igsh=Z3hibmhvYjk5bXV0"
+    }
+  ]
+}
