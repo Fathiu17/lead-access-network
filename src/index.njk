@@ -1,1 +1,96 @@
+---
+layout: base.njk
+description: "Get verified news, roster updates, tournament announcements, rankings, results, interviews, and ecosystem insights from Free Fire esports across Africa."
+---
+{% from "icons.njk" import icon %}
 
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="hero__overlay" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <p class="hero__eyebrow">Free Fire Esports &bull; Africa</p>
+
+    <h1 class="hero__title">
+      The trusted media network for
+      <span class="accent">Free Fire esports</span>
+      across Africa.
+    </h1>
+
+    <p class="hero__text">{{ site.description }}</p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary btn--lg" href="/posts/">
+        Read Latest News {{ icon("arrow-right", 18) }}
+      </a>
+      <a class="btn btn--ghost btn--lg"
+         href="{{ site.social[0].url }}"
+         target="_blank"
+         rel="noopener noreferrer">
+        {{ icon("whatsapp", 18) }} Join WhatsApp Channel
+      </a>
+    </div>
+
+    <ul class="hero__stats">
+      <li><strong>Verified</strong><span>News &amp; rosters</span></li>
+      <li><strong>Live</strong><span>Tournament coverage</span></li>
+      <li><strong>Pan-African</strong><span>Regional insight</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========================= LATEST POSTS ======================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Latest <span class="accent">Coverage</span></h2>
+      <a class="section-link" href="/posts/">View all posts {{ icon("arrow-right", 16) }}</a>
+    </div>
+
+    {% if collections.posts.length %}
+      <div class="post-grid">
+        {% for post in collections.posts | limit(6) %}
+          {% include "post-card.njk" %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty-note">
+        No posts published yet. Head to the <a href="/admin/">admin panel</a> to write your first article.
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ======================== CATEGORIES =========================== -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Browse by <span class="accent">Category</span></h2>
+    </div>
+
+    <ul class="chip-list">
+      {% for cat in site.categories %}
+        <li>
+          <a class="chip" href="/posts/?category={{ cat | urlencode }}">{{ cat }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<!-- ========================== CTA BAND =========================== -->
+<section class="section cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <h2 class="cta-band__title">Never miss a roster move again.</h2>
+      <p class="cta-band__text">
+        Follow LEAD ACCESS Network for verified Free Fire esports coverage across Africa.
+      </p>
+    </div>
+    <a class="btn btn--primary btn--lg"
+       href="{{ site.social[0].url }}"
+       target="_blank"
+       rel="noopener noreferrer">
+      {{ icon("whatsapp", 18) }} Follow the Channel
+    </a>
+  </div>
+</section>
