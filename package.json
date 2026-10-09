@@ -4,12 +4,12 @@
   "private": true,
   "description": "LEAD ACCESS Network (LAN) — The trusted media and information network for Free Fire esports across Africa.",
   "scripts": {
-    "build": "npx @11ty/eleventy",
-    "start": "npx @11ty/eleventy --serve",
-    "dev": "npx @11ty/eleventy --serve",
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "dev": "eleventy --serve",
     "clean": "rm -rf _site"
   },
-  "devDependencies": {
+  "dependencies": {
     "@11ty/eleventy": "^2.0.1"
   },
   "engines": {
