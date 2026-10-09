@@ -1,1 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0A0A0A" />
+    <title>LEAD ACCESS Network — Content Manager</title>
 
+    <link rel="icon" href="/images/uploads/placeholder.svg" type="image/svg+xml" />
+
+    <style>
+      html, body { margin: 0; padding: 0; background: #0A0A0A; }
+      #lan-loading {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0A0A0A;
+        color: #FFD700;
+        font-family: 'Chakra Petch', 'Segoe UI', system-ui, sans-serif;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        z-index: 9999;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="lan-loading">Loading LAN Content Manager…</div>
+
+    <!-- Sveltia CMS (drop-in, Decap/Netlify CMS compatible).
+         Loads its configuration from /admin/config.yml -->
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+
+    <script>
+      /* Hide the loader once the CMS mounts */
+      window.addEventListener('load', function () {
+        var el = document.getElementById('lan-loading');
+        if (!el) return;
+        setTimeout(function () {
+          if (document.querySelector('sveltia-cms, #nc-root')) {
+            el.style.display = 'none';
+          } else {
+            el.textContent = 'Loading LAN Content Manager…';
+          }
+        }, 400);
+
+        /* Failsafe: never leave the loader up forever */
+        setTimeout(function () { el.style.display = 'none'; }, 6000);
+      });
+    </script>
+  </body>
+</html>
